@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Encuesta G-Essence</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+
+<div class="background"></div>
+<div class="leaf leaf1"></div>
+<div class="leaf leaf2"></div>
+<div class="leaf leaf3"></div>
+<div class="leaf leaf4"></div>
+
+<div class="container">
+
+  <header>
+    <a href="../index.html" class="volver-link">← Volver a la página principal</a>
+    <div class="logo-container">
+      <img src="logo.png" class="logo" alt="Logo G-Essence">
+    </div>
+    <h1>Encuesta G-Essence</h1>
+    <p class="hero-quote">“La esencia natural del guanacaste en cada creación.”</p>
+    <p class="intro-note">Selecciona un producto, elige la respuesta para cada pregunta y avanza automáticamente al siguiente.</p>
+  </header>
+
+  <!-- Barra de progreso -->
+  <div class="progress">
+    <div class="progress-bar" id="progressBar"></div>
+    <span id="progressText">Pregunta 1 de 8</span>
+  </div>
+
+  <!-- Formulario -->
+  <form id="surveyForm" method="post">
+
+    <!-- Datos personales -->
+    <section class="card">
+      <h2><i class="fa-solid fa-user"></i> Datos Personales</h2>
+      <div class="grid">
+        <div class="input-group">
+          <label>Nombre</label>
+          <input type="text" name="nombre" required>
+        </div>
+        <div class="input-group">
+          <label>Edad (Opcional)</label>
+          <input type="number" name="edad">
+        </div>
+        <div class="input-group">
+          <label>Sexo (Opcional)</label>
+          <select name="sexo">
+            <option value="">Seleccione</option>
+            <option>Masculino</option>
+            <option>Femenino</option>
+            <option>Prefiero no decirlo</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label>Municipio</label>
+          <input type="text" name="municipio" required>
+        </div>
+      </div>
+    </section>
+
+    <!-- Selección de producto -->
+    <section class="card">
+      <h2><i class="fa-solid fa-box-open"></i> ¿Qué producto desea evaluar?</h2>
+      <input type="hidden" name="producto" id="productoSeleccionado" value="">
+      <div class="products">
+        <div class="product-card" data-product="te">
+          <div class="emoji">🍵</div>
+          <h3>Té</h3>
+        </div>
+        <div class="product-card" data-product="postres">
+          <div class="emoji">🍰</div>
+          <h3>Postres</h3>
+        </div>
+        <div class="product-card" data-product="mantequilla">
+          <div class="emoji">🧈</div>
+          <h3>Mantequilla</h3>
+        </div>
+        <div class="product-card" data-product="jabones">
+          <div class="emoji">🧼</div>
+          <h3>Jabones</h3>
+        </div>
+      </div>
+    </section>
+
+    <!-- Preguntas dinámicas -->
+    <section class="card questions" id="te">
+      <h2>🍵 Té</h2>
+
+      <div class="question-step">
+        <p>1️⃣ ¿Conocía que las semillas de guanacaste pueden utilizarse para preparar té?</p>
+        <label><input type="radio" name="te1" value="Sí" required> Sí</label>
+        <label><input type="radio" name="te1" value="No"> No</label>
+      </div>
+
+      <div class="question-step">
+        <p>2️⃣ ¿Ha probado anteriormente un té elaborado con semillas de guanacaste?</p>
+        <label><input type="radio" name="te2" value="Sí" required> Sí</label>
+        <label><input type="radio" name="te2" value="No"> No</label>
+      </div>
+
+      <div class="question-step">
+        <p>3️⃣ ¿Qué tan atractivo le parece este producto?</p>
+        <div class="stars" data-rating-name="te3">
+          <input type="hidden" name="te3" value="0">
+          <i class="fa-regular fa-star"></i>
+          <i class="fa-regular fa-star"></i>
+          <i class="fa-regular fa-star"></i>
+          <i class="fa-regular fa-star"></i>
+          <i class="fa-regular fa-star"></i>
+        </div>
+      </div>
+
+      <div class="question-step">
+        <p>4️⃣ ¿Considera que consumir productos naturales beneficia la salud?</p>
+        <label><input type="radio" name="te4" value="Sí" required> Sí</label>
+        <label><input type="radio" name="te4" value="No"> No</label>
+      </div>
+
+      <div class="question-step">
+        <p>5️⃣ ¿Estaría dispuesto(a) a comprar este té?</p>
+        <label><input type="radio" name="te5" value="Sí" required> Sí</label>
+        <label><input type="radio" name="te5" value="No"> No</label>
+      </div>
+
+      <div class="question-step">
+        <p>6️⃣ ¿Qué presentación preferiría?</p>
+        <label><input type="radio" name="te6" value="Bolsitas" required> Bolsitas</label>
+        <label><input type="radio" name="te6" value="A granel"> A granel</label>
+        <label><input type="radio" name="te6" value="Ambas"> Ambas</label>
+      </div>
+
+      <div class="question-step">
+        <p>7️⃣ ¿Recomendaría este producto a familiares o amigos?</p>
+        <label><input type="radio" name="te7" value="Sí" required> Sí</label>
+        <label><input type="radio" name="te7" value="No"> No</label>
+      </div>
+
+      <div class="question-step">
+        <p>8️⃣ ¿Qué sugerencias nos daría para mejorar este producto?</p>
+        <textarea name="te8" rows="4"></textarea>
+      </div>
+    </section>
+
+    <section class="card questions" id="postres">
+      <h2>🍰 Postres con harina de Guanacaste</h2>
+
+      <div class="question-step">
+        <p>1️⃣ ¿Sabía que con la harina de semilla de guanacaste se pueden elaborar postres?</p>
+        <label><input type="radio" name="postres1" value="Sí" required> Sí</label>
+        <label><input type="radio" name="postres1" value="No"> No</label>
+      </div>
+
+      <div class="question-step">
+        <p>2️⃣ ¿Había escuchado antes sobre este tipo de harina?</p>
+        <label><input type="radio" name="postres2" value="Sí" required> Sí</label>
+        <label><input type="radio" name="postres2" value="No"> No</label>
+      </div>
+
+      <div class="question-step">
+        <p>3️⃣ ¿Qué tan interesante le parece esta innovación?</p>
+        <div class="stars" data-rating-name="postres3">
+          <input type="hidden" name="postres3" value="0">
+          <i class="fa-regular fa-star"></i>
+          <i class="fa-regular fa-star"></i>
+          <i class="fa-regular fa-star"></i>
+          <i class="fa-regular fa-star"></i>
+          <i class="fa-regular fa-star"></i>
+        </div>
+      </div>
+
+      <div class="question-step">
+        <p>4️⃣ ¿Estaría dispuesto(a) a probar un postre elaborado con esta harina?</p>
+        <label><input type="radio" name="postres4" value="Sí" required> Sí</label>
+        <label><input type="radio" name="postres4" value="No"> No</label>
+      </div>
+
+      <div class="question-step">
+        <p>5️⃣ ¿Qué tipo de postre le gustaría encontrar?</p>
+        <label><input type="radio" name="postres5" value="Chocolate" required> Chocolate</label>
+        <label><input type="radio" name="postres5" value="Torta"> Torta</label>
+        <label><input type="radio" name="postres5" value="Brownie"> Brownie</label>
+        <label><input type="radio" name="postres5" value="Cupcake"> Cupcake</label>
+      </div>
+
+      <div class="question-step">
+        <p>6️⃣ ¿Considera importante consumir productos elaborados con ingredientes naturales?</p>
+        <label><input type="radio" name="postres6" value="Sí" required> Sí</label>
+        <label><input type="radio" name="postres6" value="No"> No</label>
+      </div>
+
+      <div class="question-step">
+        <p>7️⃣ ¿Compraría este producto si estuviera disponible?</p>
+        <label><input type="radio" name="postres7" value="Sí" required> Sí</label>
+        <label><input type="radio" name="postres7" value="No"> No</label>
+      </div>
+
+      <div class="question-step">
+        <p>8️⃣ ¿Qué sugerencias tiene para nuestros postres?</p>
+        <textarea name="postres8" rows="4"></textarea>
+      </div>
+    </section>
+
+    <section class="card questions" id="mantequilla">
+      <h2>🧈 Mantequilla de Guanacaste</h2>
+
+      <div class="question-step">
+        <p>1️⃣ ¿Sabía que las semillas de guanacaste pueden convertirse en mantequilla untable?</p>
+        <label><input type="radio" name="mantequilla1" value="Sí" required> Sí</label>
+        <label><input type="radio" name="mantequilla1" value="No"> No</label>
+      </div>
+
+      <div class="question-step">
+        <p>2️⃣ ¿Le gustaría probar una mantequilla elaborada con este ingrediente?</p>
+        <label><input type="radio" name="mantequilla2" value="Sí" required> Sí</label>
+        <label><input type="radio" name="mantequilla2" value="No"> No</label>
+      </div>
+
+      <div class="question-step">
+        <p>3️⃣ ¿Con qué alimentos la consumiría?</p>
+        <textarea name="mantequilla3" rows="4"></textarea>
+      </div>
+
+      <div class="question-step">
+        <p>4️⃣ ¿Qué tan saludable considera este producto?</p>
+        <div class="stars" data-rating-name="mantequilla4">
+          <input type="hidden" name="mantequilla4" value="0">
+          <i class="fa-regular fa-star"></i>
+          <i class="fa-regular fa-star"></i>
+          <i class="fa-regular fa-star"></i>
+          <i class="fa-regular fa-star"></i>
+          <i class="fa-regular fa-star"></i>
+        </div>
+      </div>
+
+      <div class="question-step">
+        <p>5️⃣ ¿La compraría para su hogar?</p>
+        <label><input type="radio" name="mantequilla5" value="Sí" required> Sí</label>
+        <label><input type="radio" name="mantequilla5" value="No"> No</label>
+      </div>
+
+      <div class="question-step">
+        <p>6️⃣ ¿Qué presentación preferiría?</p>
+        <label><input type="radio" name="mantequilla6" value="Frasco pequeño" required> Frasco pequeño</label>
+        <label><input type="radio" name="mantequilla6" value="Frasco mediano"> Frasco mediano</label>
+        <label><input type="radio" name="mantequilla6" value="Frasco grande"> Frasco grande</label>
+      </div>
+
+      <div class="question-step">
+        <p>7️⃣ ¿La recomendaría a otras personas?</p>
+        <label><input type="radio" name="mantequilla7" value="Sí" required> Sí</label>
+        <label><input type="radio" name="mantequilla7" value="No"> No</label>
+      </div>
+
+      <div class="question-step">
+        <p>8️⃣ ¿Qué mejoraríamos de este producto?</p>
+        <textarea name="mantequilla8" rows="4"></textarea>
+      </div>
+    </section>
+
+    <section class="card questions" id="jabones">
+      <h2>🧼 Jabones artesanales</h2>
+
+      <div class="question-step">
+        <p>1️⃣ ¿Sabía que es posible elaborar jabones utilizando ingredientes naturales derivados del guanacaste?</p>
+        <label><input type="radio" name="jabones1" value="Sí" required> Sí</label>
+        <label><input type="radio" name="jabones1" value="No"> No</label>
+      </div>
+
+      <div class="question-step">
+        <p>2️⃣ ¿Qué tan importante es para usted que un jabón sea natural?</p>
+        <div class="stars" data-rating-name="jabones2">
+          <input type="hidden" name="jabones2" value="0">
+          <i class="fa-regular fa-star"></i>
+          <i class="fa-regular fa-star"></i>
+          <i class="fa-regular fa-star"></i>
+          <i class="fa-regular fa-star"></i>
+          <i class="fa-regular fa-star"></i>
+        </div>
+      </div>
+
+      <div class="question-step">
+        <p>3️⃣ ¿Qué aroma preferiría?</p>
+        <label><input type="radio" name="jabones3" value="Lavanda" required> Lavanda</label>
+        <label><input type="radio" name="jabones3" value="Cítricos"> Cítricos</label>
+        <label><input type="radio" name="jabones3" value="Hierbas"> Hierbas</label>
+        <label><input type="radio" name="jabones3" value="Neutro"> Neutro</label>
+      </div>
+
+      <div class="question-step">
+        <p>4️⃣ ¿Qué presentación le gusta más?</p>
+        <label><input type="radio" name="jabones4" value="Barra pequeña" required> Barra pequeña</label>
+        <label><input type="radio" name="jabones4" value="Barra mediana"> Barra mediana</label>
+        <label><input type="radio" name="jabones4" value="Barra grande"> Barra grande</label>
+      </div>
+
+      <div class="question-step">
+        <p>5️⃣ ¿Compraría un jabón artesanal elaborado con ingredientes naturales?</p>
+        <label><input type="radio" name="jabones5" value="Sí" required> Sí</label>
+        <label><input type="radio" name="jabones5" value="No"> No</label>
+      </div>
+
+      <div class="question-step">
+        <p>6️⃣ ¿Qué tan importante es que el producto sea amigable con el medio ambiente?</p>
+        <div class="stars" data-rating-name="jabones6">
+          <input type="hidden" name="jabones6" value="0">
+          <i class="fa-regular fa-star"></i>
+          <i class="fa-regular fa-star"></i>
+          <i class="fa-regular fa-star"></i>
+          <i class="fa-regular fa-star"></i>
+          <i class="fa-regular fa-star"></i>
+        </div>
+      </div>
+
+      <div class="question-step">
+        <p>7️⃣ ¿Lo recomendaría a familiares o amigos?</p>
+        <label><input type="radio" name="jabones7" value="Sí" required> Sí</label>
+        <label><input type="radio" name="jabones7" value="No"> No</label>
+      </div>
+
+      <div class="question-step">
+        <p>8️⃣ ¿Qué sugerencias tiene para mejorar nuestros jabones?</p>
+        <textarea name="jabones8" rows="4"></textarea>
+      </div>
+    </section>
+
+    <!-- Navegación -->
+    <div class="navigation">
+      <button type="button" id="prevBtn">Anterior</button>
+      <button type="button" id="nextBtn" style="display:none;">Siguiente</button>
+      <button type="submit" id="submitBtn" style="display:none;">Enviar Encuesta</button>
+    </div>
+
+  </form>
+
+  <!-- Pantalla final -->
+  <div class="thanks" id="thanks">
+    <h2>🎉 ¡Muchas Gracias!</h2>
+    <p>Su opinión ayudará a mejorar los productos de <strong>G-Essence</strong> 🫶</p>
+    <p>¡Gracias por apoyar la innovación nicaragüense!</p>
+  </div>
+
+</div>
+
+<script type="module" src="script.js"></script>
+</body>
+</html>

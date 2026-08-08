@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 420" role="img" aria-labelledby="title desc">
+  <title id="title">Guanacaste placeholder</title>
+  <desc id="desc">Illustrative placeholder for the seed of guanacaste.</desc>
+  <defs>
+    <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#f2d7a7"/>
+      <stop offset="100%" stop-color="#7C5524"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="420" fill="#F8F4EE"/>
+  <rect x="40" y="40" width="520" height="340" rx="28" fill="url(#g)" opacity="0.22"/>
+  <circle cx="300" cy="210" r="96" fill="#5A341A" opacity="0.95"/>
+  <path d="M300 126c18 18 28 38 28 60 0 17-8 34-28 54-18-20-28-37-28-54 0-22 10-42 28-60Z" fill="#F8F4EE" opacity="0.9"/>
+  <path d="M272 206c12-12 24-18 38-18 11 0 22 4 31 12" fill="none" stroke="#F8F4EE" stroke-width="6" stroke-linecap="round"/>
+  <text x="300" y="360" text-anchor="middle" fill="#5A341A" font-family="Poppins, Arial, sans-serif" font-size="30" font-weight="700">Semilla de Guanacaste</text>
+</svg>

@@ -47,6 +47,8 @@
                 HEADER
     ======================================-->
 
+    <div class="nav-backdrop" id="navBackdrop"></div>
+
     <header class="header">
 
         <div class="container">
@@ -65,9 +67,9 @@
 
             </a>
 
-            <nav class="navbar">
+            <nav class="navbar" id="navbar">
 
-                <ul>
+                <ul id="navList">
 
                     <li><a href="#inicio">Inicio</a></li>
 
@@ -81,15 +83,21 @@
 
                     <li><a href="encuesta/index.html">Encuesta</a></li>
 
+                    <li class="nav-cta-mobile"><a href="#productos" class="btn-header">Explorar Productos</a></li>
+
                 </ul>
 
             </nav>
 
-            <a href="#productos" class="btn-header">
+            <a href="#productos" class="btn-header btn-header-desktop">
 
                 Explorar Productos
 
             </a>
+
+            <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="navList">
+                <span></span><span></span><span></span>
+            </button>
 
         </div>
 
@@ -167,8 +175,6 @@
                 <div class="about-image">
 
                     <img src="semilla-guanacaste.png" alt="Semilla de Guanacaste">
-
-                    <img src="" alt="Sello G-Essence" class="about-seal">
 
                 </div>
 
@@ -695,7 +701,7 @@
                         <i class="fab fa-tiktok"></i>
                     </a>
 
-                    <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                    <a href="https://www.youtube.com/@G-Essence-i7u/shorts" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
                         <i class="fab fa-youtube"></i>
                     </a>
 

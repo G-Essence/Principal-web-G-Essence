@@ -65,3 +65,45 @@ loader.style.display="none";
 },900);
 
 });
+
+/*=========================================
+        MENÚ MÓVIL (hamburguesa)
+=========================================*/
+
+const navToggle = document.getElementById("navToggle");
+const navbar = document.getElementById("navbar");
+const navBackdrop = document.getElementById("navBackdrop");
+const navList = document.getElementById("navList");
+
+function openNav(){
+    navbar.classList.add("open");
+    navBackdrop.classList.add("open");
+    navToggle.setAttribute("aria-expanded", "true");
+    document.body.classList.add("nav-open");
+}
+
+function closeNav(){
+    navbar.classList.remove("open");
+    navBackdrop.classList.remove("open");
+    navToggle.setAttribute("aria-expanded", "false");
+    document.body.classList.remove("nav-open");
+}
+
+if (navToggle && navbar && navBackdrop) {
+
+    navToggle.addEventListener("click", () => {
+        const isOpen = navbar.classList.contains("open");
+        isOpen ? closeNav() : openNav();
+    });
+
+    navBackdrop.addEventListener("click", closeNav);
+
+    navList?.querySelectorAll("a").forEach(a =>
+        a.addEventListener("click", closeNav)
+    );
+
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeNav();
+    });
+
+}

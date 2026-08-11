@@ -612,297 +612,6 @@ section{
 
 }
 
-@media (max-width: 900px){
-
-    .header .container{
-
-        flex-wrap:nowrap;
-        justify-content:space-between;
-
-    }
-
-    .nav-toggle{ display:flex; }
-
-    .btn-header-desktop{ display:none; }
-
-    .nav-cta-mobile{
-        display:block;
-        margin-top:10px;
-    }
-
-    .nav-cta-mobile .btn-header{
-        display:inline-block;
-        width:100%;
-        text-align:center;
-    }
-
-    .navbar{
-        position:fixed;
-        top:0;
-        right:0;
-        height:100dvh;
-        width:min(320px, 82vw);
-        z-index:1001;
-        transform:translateX(100%);
-        transition:transform .35s ease;
-        pointer-events:none;
-    }
-
-    .navbar.open{
-        transform:translateX(0);
-        pointer-events:auto;
-    }
-
-    .navbar ul{
-
-        flex-direction:column;
-        height:100%;
-        justify-content:flex-start;
-        align-items:stretch;
-        gap:0;
-        background:linear-gradient(180deg, #2b2b2b 0%, #1d1408 100%);
-        padding:100px 32px 40px;
-        box-shadow:-20px 0 50px rgba(0,0,0,.35);
-
-    }
-
-    .navbar ul li{
-        border-bottom:1px solid rgba(255,255,255,.08);
-    }
-
-    .navbar ul li:last-child{ border-bottom:none; }
-
-    .navbar a{
-        display:block;
-        padding:16px 2px;
-        font-size:1.05rem;
-    }
-
-    .navbar a::after{ display:none; }
-
-    .nav-backdrop{
-        position:fixed;
-        inset:0;
-        z-index:1000;
-        background:rgba(15,10,5,.55);
-        backdrop-filter:blur(3px);
-        opacity:0;
-        pointer-events:none;
-        transition:opacity .35s ease;
-    }
-
-    .nav-backdrop.open{
-        opacity:1;
-        pointer-events:auto;
-    }
-
-    body.nav-open{ overflow:hidden; }
-
-    .hero h1{
-
-        font-size:clamp(2.4rem, 7vw, 3.7rem);
-
-    }
-
-    .header-price{
-
-        display:none;
-
-    }
-
-    .hero p{
-
-        font-size:1rem;
-
-    }
-
-    .about-container,
-    .contact-container,
-    .footer-grid{
-
-        grid-template-columns:1fr;
-
-    }
-
-    .about-container,
-    .contact-container{
-
-        gap:40px;
-
-    }
-
-    .section-title h2{
-
-        font-size:2.2rem;
-
-    }
-
-    .video-container video{
-
-        height:420px;
-
-    }
-
-}
-
-@media (max-width: 600px){
-
-    section{
-
-        padding:70px 0;
-
-    }
-
-    .section-title{
-
-        margin-bottom:44px;
-
-    }
-
-    .btn-primary,
-    .btn-secondary,
-    .product-btn{
-
-        width:100%;
-        text-align:center;
-
-    }
-
-    .hero-content{
-
-        padding:30px 22px;
-        border-radius:24px;
-
-    }
-
-    .hero-seal{
-
-        width:80px;
-        margin-bottom:18px;
-
-    }
-
-    .subtitle{
-
-        padding:8px 18px;
-        font-size:.8rem;
-        letter-spacing:1px;
-        margin-bottom:22px;
-
-    }
-
-    .hero h1{
-
-        font-size:clamp(2rem, 9vw, 2.6rem);
-        margin-bottom:18px;
-
-    }
-
-    .hero p{
-
-        font-size:.98rem;
-        line-height:1.7;
-
-    }
-
-    .hero-buttons{
-
-        flex-direction:column;
-        margin-top:30px;
-
-    }
-
-    .logo img{
-
-        width:56px;
-
-    }
-
-    .brand-text strong{
-
-        font-size:1rem;
-
-    }
-
-    .product-card img{
-
-        height:220px;
-
-    }
-
-    .product-info{
-
-        padding:24px 20px;
-
-    }
-
-    .product-info h3{
-
-        font-size:1.35rem;
-
-    }
-
-    .section-title h2{
-
-        font-size:1.7rem;
-
-    }
-
-    .about-text h3{
-
-        font-size:1.7rem;
-
-    }
-
-    .why-card{
-
-        padding:32px 22px;
-
-    }
-
-    .info-card{
-
-        padding:22px;
-
-    }
-
-    .footer-grid{
-
-        text-align:center;
-
-    }
-
-    .footer-grid ul{
-
-        padding:0;
-
-    }
-
-    .social{
-
-        justify-content:center;
-
-    }
-
-    .video-container video{
-
-        height:260px;
-
-    }
-
-    .back-top{
-
-        right:18px;
-        bottom:18px;
-        width:50px;
-        height:50px;
-
-    }
-
-}
-
-
-
 /*=========================================
             NUESTRA ESENCIA
 ==========================================*/
@@ -1356,11 +1065,23 @@ section{
 
     border:1px solid rgba(122,85,36,.15);
 
+    background:#111;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
 }
 
 .video-container video{
 
-    width:100%;
+    width:auto;
+
+    max-width:100%;
+
+    height:auto;
 
     max-height:650px;
 
@@ -1735,5 +1456,302 @@ transform:scale(1);
 transform:scale(.9);
 
 }
+
+}
+
+
+/*=========================================
+        RESPONSIVE (MEDIA QUERIES)
+    Se colocan al final a propósito: así
+    siempre tienen prioridad sobre las
+    reglas base de cada sección de arriba.
+==========================================*/
+
+@media (max-width: 900px){
+
+    .header .container{
+
+        flex-wrap:nowrap;
+        justify-content:space-between;
+
+    }
+
+    .nav-toggle{ display:flex; }
+
+    .btn-header-desktop{ display:none; }
+
+    .nav-cta-mobile{
+        display:block;
+        margin-top:10px;
+    }
+
+    .nav-cta-mobile .btn-header{
+        display:inline-block;
+        width:100%;
+        text-align:center;
+    }
+
+    .navbar{
+        position:fixed;
+        top:0;
+        right:0;
+        height:100dvh;
+        width:min(320px, 82vw);
+        z-index:1001;
+        transform:translateX(100%);
+        transition:transform .35s ease;
+        pointer-events:none;
+    }
+
+    .navbar.open{
+        transform:translateX(0);
+        pointer-events:auto;
+    }
+
+    .navbar ul{
+
+        flex-direction:column;
+        height:100%;
+        justify-content:flex-start;
+        align-items:stretch;
+        gap:0;
+        background:linear-gradient(180deg, #2b2b2b 0%, #1d1408 100%);
+        padding:100px 32px 40px;
+        box-shadow:-20px 0 50px rgba(0,0,0,.35);
+
+    }
+
+    .navbar ul li{
+        border-bottom:1px solid rgba(255,255,255,.08);
+    }
+
+    .navbar ul li:last-child{ border-bottom:none; }
+
+    .navbar a{
+        display:block;
+        padding:16px 2px;
+        font-size:1.05rem;
+    }
+
+    .navbar a::after{ display:none; }
+
+    .nav-backdrop{
+        position:fixed;
+        inset:0;
+        z-index:1000;
+        background:rgba(15,10,5,.55);
+        backdrop-filter:blur(3px);
+        opacity:0;
+        pointer-events:none;
+        transition:opacity .35s ease;
+    }
+
+    .nav-backdrop.open{
+        opacity:1;
+        pointer-events:auto;
+    }
+
+    body.nav-open{ overflow:hidden; }
+
+    .hero h1{
+
+        font-size:clamp(2.4rem, 7vw, 3.7rem);
+
+    }
+
+    .header-price{
+
+        display:none;
+
+    }
+
+    .hero p{
+
+        font-size:1rem;
+
+    }
+
+    .about-container,
+    .contact-container,
+    .footer-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .about-container,
+    .contact-container{
+
+        gap:40px;
+
+    }
+
+    .section-title h2{
+
+        font-size:2.2rem;
+
+    }
+
+    .video-container video{
+
+        height:420px;
+
+    }
+
+}
+
+@media (max-width: 600px){
+
+    section{
+
+        padding:70px 0;
+
+    }
+
+    .section-title{
+
+        margin-bottom:44px;
+
+    }
+
+    .btn-primary,
+    .btn-secondary,
+    .product-btn{
+
+        width:100%;
+        text-align:center;
+
+    }
+
+    .hero-content{
+
+        padding:30px 22px;
+        border-radius:24px;
+
+    }
+
+    .hero-seal{
+
+        width:80px;
+        margin-bottom:18px;
+
+    }
+
+    .subtitle{
+
+        padding:8px 18px;
+        font-size:.8rem;
+        letter-spacing:1px;
+        margin-bottom:22px;
+
+    }
+
+    .hero h1{
+
+        font-size:clamp(2rem, 9vw, 2.6rem);
+        margin-bottom:18px;
+
+    }
+
+    .hero p{
+
+        font-size:.98rem;
+        line-height:1.7;
+
+    }
+
+    .hero-buttons{
+
+        flex-direction:column;
+        margin-top:30px;
+
+    }
+
+    .logo img{
+
+        width:56px;
+
+    }
+
+    .brand-text strong{
+
+        font-size:1rem;
+
+    }
+
+    .product-card img{
+
+        height:220px;
+
+    }
+
+    .product-info{
+
+        padding:24px 20px;
+
+    }
+
+    .product-info h3{
+
+        font-size:1.35rem;
+
+    }
+
+    .section-title h2{
+
+        font-size:1.7rem;
+
+    }
+
+    .about-text h3{
+
+        font-size:1.7rem;
+
+    }
+
+    .why-card{
+
+        padding:32px 22px;
+
+    }
+
+    .info-card{
+
+        padding:22px;
+
+    }
+
+    .footer-grid{
+
+        text-align:center;
+
+    }
+
+    .footer-grid ul{
+
+        padding:0;
+
+    }
+
+    .social{
+
+        justify-content:center;
+
+    }
+
+    .video-container video{
+
+        height:260px;
+
+    }
+
+    .back-top{
+
+        right:18px;
+        bottom:18px;
+        width:50px;
+        height:50px;
+
+    }
 
 }

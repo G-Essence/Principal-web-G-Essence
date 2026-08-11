@@ -305,15 +305,15 @@ function initSurvey(){
                         postres7: rawData.postres7 || "",
                         postres8: rawData.postres8 || ""
                     },
-                    mantequilla: {
-                        mantequilla1: rawData.mantequilla1 || "",
-                        mantequilla2: rawData.mantequilla2 || "",
-                        mantequilla3: rawData.mantequilla3 || "",
-                        mantequilla4: rawData.mantequilla4 || "",
-                        mantequilla5: rawData.mantequilla5 || "",
-                        mantequilla6: rawData.mantequilla6 || "",
-                        mantequilla7: rawData.mantequilla7 || "",
-                        mantequilla8: rawData.mantequilla8 || ""
+                    chocolate: {
+                        chocolate1: rawData.chocolate1 || "",
+                        chocolate2: rawData.chocolate2 || "",
+                        chocolate3: rawData.chocolate3 || "",
+                        chocolate4: rawData.chocolate4 || "",
+                        chocolate5: rawData.chocolate5 || "",
+                        chocolate6: rawData.chocolate6 || "",
+                        chocolate7: rawData.chocolate7 || "",
+                        chocolate8: rawData.chocolate8 || ""
                     },
                     jabones: {
                         jabones1: rawData.jabones1 || "",
@@ -385,4 +385,3 @@ if (document.readyState === 'loading') {
 }
 
 window.initSurvey = initSurvey;
-

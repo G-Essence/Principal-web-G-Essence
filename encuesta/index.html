@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Encuesta G-Essence</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="encuesta-styles.css">
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <!-- Font Awesome -->
@@ -31,65 +31,69 @@
   </header>
 
   <!-- Barra de progreso -->
-  <div class="progress">
+  <div class="progress" id="progress">
     <div class="progress-bar" id="progressBar"></div>
-    <span id="progressText">Pregunta 1 de 8</span>
   </div>
+  <span id="progressText"></span>
 
   <!-- Formulario -->
   <form id="surveyForm" method="post">
 
-    <!-- Datos personales -->
-    <section class="card">
-      <h2><i class="fa-solid fa-user"></i> Datos Personales</h2>
-      <div class="grid">
-        <div class="input-group">
-          <label>Nombre</label>
-          <input type="text" name="nombre" required>
-        </div>
-        <div class="input-group">
-          <label>Edad (Opcional)</label>
-          <input type="number" name="edad">
-        </div>
-        <div class="input-group">
-          <label>Sexo (Opcional)</label>
-          <select name="sexo">
-            <option value="">Seleccione</option>
-            <option>Masculino</option>
-            <option>Femenino</option>
-            <option>Prefiero no decirlo</option>
-          </select>
-        </div>
-        <div class="input-group">
-          <label>Municipio</label>
-          <input type="text" name="municipio" required>
-        </div>
-      </div>
-    </section>
+    <div id="stepIntro">
 
-    <!-- Selección de producto -->
-    <section class="card">
-      <h2><i class="fa-solid fa-box-open"></i> ¿Qué producto desea evaluar?</h2>
-      <input type="hidden" name="producto" id="productoSeleccionado" value="">
-      <div class="products">
-        <div class="product-card" data-product="te">
-          <div class="emoji">🍵</div>
-          <h3>Té</h3>
+      <!-- Datos personales -->
+      <section class="card">
+        <h2><i class="fa-solid fa-user"></i> Datos Personales</h2>
+        <div class="grid">
+          <div class="input-group">
+            <label>Nombre</label>
+            <input type="text" name="nombre" required>
+          </div>
+          <div class="input-group">
+            <label>Edad (Opcional)</label>
+            <input type="number" name="edad">
+          </div>
+          <div class="input-group">
+            <label>Sexo (Opcional)</label>
+            <select name="sexo">
+              <option value="">Seleccione</option>
+              <option>Masculino</option>
+              <option>Femenino</option>
+              <option>Prefiero no decirlo</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label>Municipio</label>
+            <input type="text" name="municipio" required>
+          </div>
         </div>
-        <div class="product-card" data-product="postres">
-          <div class="emoji">🍰</div>
-          <h3>Postres</h3>
+      </section>
+
+      <!-- Selección de producto -->
+      <section class="card">
+        <h2><i class="fa-solid fa-box-open"></i> ¿Qué producto desea evaluar?</h2>
+        <input type="hidden" name="producto" id="productoSeleccionado" value="">
+        <div class="products">
+          <div class="product-card" data-product="te">
+            <div class="emoji">🍵</div>
+            <h3>Té</h3>
+          </div>
+          <div class="product-card" data-product="postres">
+            <div class="emoji">🍰</div>
+            <h3>Postres</h3>
+          </div>
+          <div class="product-card" data-product="chocolate">
+            <div class="emoji">🍫</div>
+            <h3>Chocolate</h3>
+          </div>
+          <div class="product-card" data-product="jabones">
+            <div class="emoji">🧼</div>
+            <h3>Jabones</h3>
+          </div>
         </div>
-        <div class="product-card" data-product="chocolate">
-          <div class="emoji">🍫</div>
-          <h3>Chocolate</h3>
-        </div>
-        <div class="product-card" data-product="jabones">
-          <div class="emoji">🧼</div>
-          <h3>Jabones</h3>
-        </div>
-      </div>
-    </section>
+      </section>
+
+    </div>
 
     <!-- Preguntas dinámicas -->
     <section class="card questions" id="te">
@@ -332,7 +336,7 @@
     </section>
 
     <!-- Navegación -->
-    <div class="navigation">
+    <div class="navigation" id="navigation">
       <button type="button" id="prevBtn">Anterior</button>
       <button type="button" id="nextBtn" style="display:none;">Siguiente</button>
       <button type="submit" id="submitBtn" style="display:none;">Enviar Encuesta</button>

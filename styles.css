@@ -1019,13 +1019,17 @@ footer.active{
 
     gap:35px;
 
+    align-items:stretch;
+
 }
 
 .product-card{
 
     position:relative;
 
-    background:#fff;
+    display:flex;
+    flex-direction:column;
+    background:linear-gradient(145deg, #fff 0%, #fffdf9 62%, #f5ecdf 100%);
 
     border-radius:22px;
 
@@ -1033,11 +1037,13 @@ footer.active{
 
     box-shadow:var(--shadow);
 
-    transition:.45s;
+    transition:transform .45s, box-shadow .45s, border-color .45s;
 
-    border:1px solid rgba(122,85,36,.15);
+    border:1px solid rgba(122,85,36,.22);
 
     isolation:isolate;
+
+    min-height:100%;
 
 }
 
@@ -1051,9 +1057,11 @@ footer.active{
 
     pointer-events:none;
 
+    z-index:0;
+
     border-radius:22px;
 
-    background:linear-gradient(135deg, rgba(122,85,36,.12), transparent 45%);
+    background:linear-gradient(135deg, rgba(255,255,255,.48), transparent 42%, rgba(122,85,36,.08));
 
 }
 
@@ -1071,11 +1079,18 @@ footer.active{
 
     width:100%;
 
+    position:relative;
+    z-index:1;
+
     height:270px;
 
     object-fit:cover;
 
-    transition:.5s;
+    background:linear-gradient(135deg, #f4e5d0, #d6b27e);
+
+    border-bottom:1px solid rgba(122,85,36,.12);
+
+    transition:transform .5s;
 
 }
 
@@ -1101,15 +1116,17 @@ footer.active{
 
     gap:8px;
 
-    background:rgba(90,52,26,.94);
+    background:linear-gradient(135deg, #5a341a, #8a5d2f);
 
     color:#fff;
 
-    padding:10px 14px;
+    padding:10px 16px;
 
     border-radius:999px;
 
-    box-shadow:0 10px 24px rgba(0,0,0,.2);
+    box-shadow:0 10px 24px rgba(65,36,13,.24), inset 0 1px 0 rgba(255,255,255,.2);
+
+    border:1px solid rgba(255,225,170,.28);
 
 }
 
@@ -1135,13 +1152,20 @@ footer.active{
 
     padding:30px;
 
+    position:relative;
+    z-index:1;
+
+    display:flex;
+    flex:1;
+    flex-direction:column;
+
 }
 
 .product-info h3{
 
     color:var(--primary);
 
-    margin-bottom:18px;
+    margin-bottom:16px;
 
     font-size:1.6rem;
 
@@ -1155,13 +1179,15 @@ footer.active{
 
     color:#666;
 
+    flex:1;
+
 }
 
 .product-btn{
 
     display:inline-block;
 
-    margin-top:28px;
+    margin-top:26px;
 
     background:linear-gradient(135deg, var(--gold), #9a6332);
 
@@ -1175,7 +1201,9 @@ footer.active{
 
     font-weight:600;
 
-    box-shadow:0 12px 24px rgba(122,85,36,.22);
+    box-shadow:0 12px 24px rgba(122,85,36,.22), inset 0 1px 0 rgba(255,255,255,.18);
+
+    border:1px solid rgba(255,255,255,.18);
 
 }
 

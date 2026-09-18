@@ -149,6 +149,32 @@ header .intro-note strong{
     font-weight:700;
 }
 
+.survey-home-link{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    margin-top:18px;
+    padding:12px 22px;
+    border:1px solid rgba(90,52,26,.22);
+    border-radius:50px;
+    background:rgba(255,255,255,.58);
+    color:var(--primary);
+    font-weight:600;
+    box-shadow:0 8px 20px rgba(90,52,26,.12);
+    transition:transform .3s ease, background .3s ease, box-shadow .3s ease;
+}
+
+.survey-home-link:hover{
+    transform:translateY(-3px);
+    background:var(--white);
+    box-shadow:0 14px 28px rgba(90,52,26,.2);
+}
+
+.survey-home-link:focus-visible{
+    outline:3px solid rgba(255,212,59,.75);
+    outline-offset:3px;
+}
+
 header .time{
     font-size:.95rem;
     color:var(--secondary);

@@ -33,6 +33,9 @@ async function saveSurveyData(surveyData) {
 }
 
 function initSurvey(){
+    if (document.body.dataset.surveyInitialized === "true") return;
+    document.body.dataset.surveyInitialized = "true";
+
     const form = document.getElementById("surveyForm");
     const progressBar = document.getElementById("progressBar");
     const progressText = document.getElementById("progressText");
@@ -40,6 +43,8 @@ function initSurvey(){
     const prevBtn = document.getElementById("prevBtn");
     const nextBtn = document.getElementById("nextBtn");
     const submitBtn = document.getElementById("submitBtn");
+    const surveyStatus = document.getElementById("surveyStatus");
+    const productoInput = document.getElementById('productoSeleccionado');
 
     const productCards = Array.from(document.querySelectorAll(".product-card"));
     const questionsSections = Array.from(document.querySelectorAll(".questions"));
@@ -49,6 +54,21 @@ function initSurvey(){
     let currentStep = 0;
     let steps = [];
     let autoAdvanceListeners = [];
+    let isSubmitting = false;
+
+    if(!form || !progressBar || !progressText || !prevBtn || !submitBtn || !productoInput){
+        console.error("[survey] Faltan elementos necesarios para iniciar la encuesta.");
+        return;
+    }
+
+    function showStatus(message, type = "error"){
+        if(surveyStatus){
+            surveyStatus.textContent = message;
+            surveyStatus.className = `survey-status ${type}`;
+        } else {
+            alert(message);
+        }
+    }
 
     function hasManualNextStep(stepElement){
         if(!stepElement) return false;
@@ -59,8 +79,6 @@ function initSurvey(){
         autoAdvanceListeners.forEach(({el,event,fn}) => el.removeEventListener(event, fn));
         autoAdvanceListeners = [];
     }
-
-    const productoInput = document.getElementById('productoSeleccionado');
 
     function selectProduct(index){
         if(index < 0 || index >= productCards.length) return;
@@ -73,7 +91,8 @@ function initSurvey(){
         currentStep = 0;
         showStep(currentStep);
         updateProgress();
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        const target = document.getElementById(product);
+        if(target) target.scrollIntoView({ behavior: "smooth", block: "start" });
     }
 
     productCards.forEach((card,index) => {
@@ -164,7 +183,7 @@ function initSurvey(){
     }
 
     function goNext(){
-        if(!validateStep(currentStep)) return;
+        if(!validateStep(currentStep, true)) return;
         if(currentStep < steps.length - 1){
             currentStep++;
             showStep(currentStep);
@@ -189,18 +208,17 @@ function initSurvey(){
     }
     prevBtn.addEventListener("click", goPrev);
 
-    function validateStep(n){
+    function validateStep(n, showMessage = false){
         const currentStepElement = steps[n];
         if(!currentStepElement) return true;
 
         const inputs = Array.from(currentStepElement.querySelectorAll("input, select, textarea"));
         const radioGroups = new Set();
+        let isValid = true;
 
         for(const input of inputs){
             if(input.type === "hidden"){
-                if(input.value && input.value !== "0"){
-                    return true;
-                }
+                if(input.closest(".stars") && (!Number.isInteger(Number(input.value)) || Number(input.value) < 1 || Number(input.value) > 5)) isValid = false;
                 continue;
             }
 
@@ -211,33 +229,70 @@ function initSurvey(){
 
                 const checked = currentStepElement.querySelector(`input[name="${name}"]:checked`);
                 if(!checked){
-                    return false;
+                    isValid = false;
                 }
                 continue;
             }
 
             if(input.type === "checkbox"){
-                if(input.checked) return true;
-                if(input.required) return false;
+                if(input.required && !input.checked) isValid = false;
                 continue;
             }
 
             if(input.tagName === "SELECT"){
-                if(input.value.trim() !== "") return true;
-                if(input.required) return false;
+                if(input.required && input.value.trim() === "") isValid = false;
                 continue;
             }
 
             if(input.type === "file"){
-                if(input.files && input.files.length > 0) return true;
-                if(input.required) return false;
+                if(input.required && (!input.files || input.files.length === 0)) isValid = false;
                 continue;
             }
 
-            if(input.value.trim() !== "") return true;
-            if(input.required) return false;
+            if(input.required && input.value.trim() === "") isValid = false;
         }
 
+        if(!isValid && showMessage){
+            showStatus("Completa la respuesta obligatoria antes de continuar.");
+            currentStepElement.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+        return isValid;
+    }
+
+    function validatePersonalData(){
+        const requiredFields = form.querySelectorAll("[name='nombre'], [name='municipio']");
+        for(const field of requiredFields){
+            if(!field.value.trim()){
+                showStatus("Completa tu nombre y municipio antes de iniciar la encuesta.");
+                field.focus();
+                return false;
+            }
+        }
+        return true;
+    }
+
+    function validateAllSurveySteps(){
+        for(let sectionIndex = 0; sectionIndex < sectionSteps.length; sectionIndex++){
+            const section = sectionSteps[sectionIndex];
+            for(let stepIndex = 0; stepIndex < section.length; stepIndex++){
+                const previousSection = currentSectionIndex;
+                const previousStep = currentStep;
+                currentSectionIndex = sectionIndex;
+                steps = section;
+                currentStep = stepIndex;
+                const valid = validateStep(stepIndex, false);
+                currentSectionIndex = previousSection;
+                currentStep = previousStep;
+                steps = sectionSteps[previousSection] || [];
+                if(!valid){
+                    showStatus("Completa todas las respuestas obligatorias antes de enviar.");
+                    selectProduct(sectionIndex);
+                    currentStep = stepIndex;
+                    showStep(currentStep);
+                    return false;
+                }
+            }
+        }
         return true;
     }
 
@@ -296,15 +351,15 @@ function initSurvey(){
 
     form.addEventListener("submit", async (e) => {
         e.preventDefault();
+        if(isSubmitting) return;
+        if(!validatePersonalData() || !validateAllSurveySteps()) return;
+
+        isSubmitting = true;
         submitBtn.disabled = true;
         const originalText = submitBtn.textContent;
         submitBtn.textContent = "Guardando...";
 
         try {
-            if(!validateStep(currentStep)){
-                throw new Error("Por favor, complete la pregunta actual antes de enviar.");
-            }
-
             const formData = new FormData(form);
             const rawData = Object.fromEntries(formData.entries());
 
@@ -315,21 +370,25 @@ function initSurvey(){
                 timeStyle: "medium"
             });
 
+            const preguntas = {
+                te: extraerRespuestasDeSeccion(sectionSteps[0] || []),
+                postres: extraerRespuestasDeSeccion(sectionSteps[1] || []),
+                chocolate: extraerRespuestasDeSeccion(sectionSteps[2] || []),
+                jabones: extraerRespuestasDeSeccion(sectionSteps[3] || [])
+            };
+
             const surveyData = {
                 fechaHora,
                 timestamp: serverTimestamp(),
+                producto: rawData.producto || "",
                 datosPersonales: [
                     { campo: "Nombre", valor: rawData.nombre || "" },
                     { campo: "Edad", valor: rawData.edad || "No especificado" },
                     { campo: "Sexo", valor: rawData.sexo || "No especificado" },
                     { campo: "Municipio", valor: rawData.municipio || "" }
                 ],
-                respuestas: {
-                    te: extraerRespuestasDeSeccion(sectionSteps[0] || []),
-                    postres: extraerRespuestasDeSeccion(sectionSteps[1] || []),
-                    chocolate: extraerRespuestasDeSeccion(sectionSteps[2] || []),
-                    jabones: extraerRespuestasDeSeccion(sectionSteps[3] || [])
-                }
+                preguntas,
+                respuestas: preguntas
             };
 
             await saveSurveyData(surveyData);
@@ -341,14 +400,13 @@ function initSurvey(){
             if (backgroundEl) backgroundEl.style.display = "none";
             document.querySelectorAll(".leaf").forEach(leaf => leaf.style.display = "none");
             document.getElementById("thanks").style.display = "block";
-            window.scrollTo({ top: 0, behavior: "smooth" });
+            document.getElementById("thanks")?.scrollIntoView({ behavior: "smooth", block: "start" });
+            showStatus("Encuesta guardada correctamente.", "success");
         } catch (error) {
-            const online = typeof navigator !== 'undefined' ? navigator.onLine : 'unknown';
-            const errMsg = (`No se pudo guardar la encuesta. Error: ${error && error.message ? error.message : error}. ` +
-                `Tipo: ${error && error.name ? error.name : 'unknown'}. Navegador online: ${online}`);
-            alert(errMsg);
+            showStatus("No se pudo guardar la encuesta. Revisa tu conexión e inténtalo de nuevo.");
             console.error("[survey] Error al guardar:", error);
         } finally {
+            isSubmitting = false;
             submitBtn.disabled = false;
             submitBtn.textContent = originalText;
         }

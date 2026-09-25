@@ -103,7 +103,7 @@ section{
 
     padding:110px 0;
 
-    position:relative;
+    line-height:1.6;
 
 }
 
@@ -116,6 +116,8 @@ section{
 }
 
 .section-title span{
+
+    display:inline-block;
 
     color:var(--gold);
 
@@ -133,11 +135,11 @@ section{
 
     margin-top:15px;
 
-    font-size:clamp(2.2rem, 4vw, 3.3rem);
-
     color:var(--primary);
 
     font-family:'Cinzel',serif;
+
+    font-size:clamp(2rem, 4vw, 3.3rem);
 
     line-height:1.25;
 
@@ -1015,7 +1017,7 @@ footer.active{
 
     display:grid;
 
-    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(min(100%, 320px),1fr));
 
     gap:35px;
 
@@ -1165,11 +1167,23 @@ footer.active{
 
     color:var(--primary);
 
-    margin-bottom:16px;
+    margin-bottom:12px;
 
     font-size:1.6rem;
 
     font-family:'Cinzel',serif;
+
+}
+
+.product-slogan{
+
+    margin:0 0 14px;
+
+    font-size:.84rem;
+
+    color:var(--secondary);
+
+    font-style:italic;
 
 }
 
@@ -1179,7 +1193,108 @@ footer.active{
 
     color:#666;
 
-    flex:1;
+    margin:0;
+
+}
+
+.product-flavor-list{
+
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:16px;
+}
+
+.product-flavor-list span,
+.ingredient-chip,
+.product-badges span{
+
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:6px 10px;
+    border-radius:999px;
+    background:rgba(122,85,36,.08);
+    border:1px solid rgba(122,85,36,.14);
+    color:var(--primary);
+    font-size:.72rem;
+    line-height:1.2;
+    font-weight:600;
+
+}
+
+.ingredients-block,
+.product-meta{
+
+    margin-top:18px;
+
+}
+
+.product-label{
+
+    margin:0 0 10px;
+
+    color:var(--primary);
+    font-weight:700;
+
+}
+
+.ingredient-chips,
+.product-badges{
+
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+
+}
+
+.product-meta{
+
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+    color:#4f4f4f;
+    font-size:.92rem;
+
+}
+
+.product-meta strong{
+
+    color:var(--primary);
+
+}
+
+.nutrition-details{
+
+    margin-top:18px;
+    padding:12px 14px;
+    border-radius:14px;
+    border:1px solid rgba(122,85,36,.15);
+    background:rgba(255,255,255,.7);
+
+}
+
+.nutrition-details summary{
+
+    cursor:pointer;
+    color:var(--primary);
+    font-weight:600;
+    list-style:none;
+
+}
+
+.nutrition-details summary::-webkit-details-marker{
+
+    display:none;
+
+}
+
+.nutrition-details p{
+
+    margin-top:10px;
+    color:#555;
+    line-height:1.7;
+    font-size:.9rem;
 
 }
 
@@ -1187,7 +1302,7 @@ footer.active{
 
     display:inline-block;
 
-    margin-top:26px;
+    margin-top:22px;
 
     background:linear-gradient(135deg, var(--gold), #9a6332);
 
@@ -2306,6 +2421,8 @@ transform:scale(.9);
 
         padding:24px 20px;
 
+        text-align:center;
+
     }
 
     .product-info h3{
@@ -2317,6 +2434,27 @@ transform:scale(.9);
     .section-title h2{
 
         font-size:1.7rem;
+
+    }
+
+    .section-title span{
+
+        letter-spacing:1.8px;
+        font-size:.78rem;
+
+    }
+
+    .product-flavor-list,
+    .ingredient-chips,
+    .product-badges{
+
+        justify-content:center;
+
+    }
+
+    .product-meta{
+
+        align-items:center;
 
     }
 

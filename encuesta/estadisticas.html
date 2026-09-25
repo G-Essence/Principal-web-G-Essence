@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estadísticas | G-Essence</title>
+  <link rel="stylesheet" href="estadisticas.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+  <main class="stats-shell">
+    <header class="stats-header">
+      <a class="back-link" href="index.html"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Encuesta</a>
+      <p class="eyebrow">G-Essence</p>
+      <h1>Estadísticas de la encuesta</h1>
+      <p class="subtitle">Resultados actualizados directamente desde Firebase.</p>
+      <p id="connectionState" class="connection-state loading" role="status" aria-live="polite"><span class="status-dot"></span> Conectando...</p>
+    </header>
+
+    <section id="loadingState" class="message-panel" aria-live="polite">
+      <i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>
+      <p>Cargando respuestas...</p>
+    </section>
+    <section id="errorState" class="message-panel error" hidden role="alert">
+      <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
+      <p>No se pudieron cargar las estadísticas. Revisa la conexión e inténtalo de nuevo.</p>
+    </section>
+    <section id="emptyState" class="message-panel" hidden>
+      <i class="fa-regular fa-chart-bar" aria-hidden="true"></i>
+      <p>Aún no existen encuestas completadas.</p>
+    </section>
+
+    <div id="statisticsContent" hidden>
+      <section class="summary-grid" aria-label="Resumen general">
+        <article class="summary-card"><span><i class="fa-solid fa-clipboard-check" aria-hidden="true"></i> Encuestas completadas</span><strong id="totalSurveys">0</strong></article>
+        <article class="summary-card"><span><i class="fa-solid fa-users" aria-hidden="true"></i> Personas encuestadas</span><strong id="totalPeople">0</strong></article>
+        <article class="summary-card"><span><i class="fa-solid fa-comments" aria-hidden="true"></i> Respuestas registradas</span><strong id="totalAnswers">0</strong></article>
+      </section>
+
+      <section class="content-section">
+        <div class="section-heading"><div><p class="eyebrow">Comparativa</p><h2>Ranking de productos</h2></div><span id="lastUpdated" class="updated-label"></span></div>
+        <div id="ranking" class="ranking-list"></div>
+      </section>
+
+      <section class="content-section">
+        <div class="section-heading"><div><p class="eyebrow">Detalle</p><h2>Respuestas por producto</h2></div></div>
+        <div id="productDetails" class="details-grid"></div>
+      </section>
+    </div>
+  </main>
+  <script type="module" src="estadisticas.js"></script>
+</body>
+</html>

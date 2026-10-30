@@ -506,6 +506,24 @@ section{
 
 }
 
+.innovatec-hero-logo{
+
+    position:absolute;
+
+    z-index:3;
+
+    right:clamp(20px, 4vw, 60px);
+
+    top:110px;
+
+    width:clamp(72px, 10vw, 130px);
+
+    filter:drop-shadow(0 6px 16px rgba(0,0,0,.4));
+
+    pointer-events:none;
+
+}
+
 .hero-content{
 
     position:relative;
@@ -1919,11 +1937,29 @@ footer{
 
 }
 
+.footer-brand-logos{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:24px;
+
+    margin-bottom:20px;
+
+}
+
 .footer-logo{
 
     width:120px;
 
-    margin-bottom:20px;
+    margin-bottom:0;
+
+}
+
+.innovatec-footer-logo{
+
+    width:130px;
 
 }
 
@@ -2590,6 +2626,12 @@ transform:scale(.9);
     .footer-grid{
 
         text-align:center;
+
+    }
+
+    .footer-brand-logos{
+
+        justify-content:center;
 
     }
 

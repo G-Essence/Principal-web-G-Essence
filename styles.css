@@ -107,6 +107,167 @@ section{
 
 }
 
+.hero,
+.about,
+.impact-section,
+.products,
+.why,
+.video-section,
+.contact,
+footer{
+
+    position:relative;
+    isolation:isolate;
+
+}
+
+.hero::before,
+.hero::after,
+.about::before,
+.about::after,
+.impact-section::before,
+.impact-section::after,
+.products::before,
+.products::after,
+.why::before,
+.why::after,
+.video-section::before,
+.video-section::after,
+.contact::before,
+.contact::after,
+footer::before,
+footer::after{
+
+    content:"";
+    position:absolute;
+    z-index:0;
+    background-repeat:no-repeat;
+    background-size:contain;
+    pointer-events:none;
+
+}
+
+.about > .container,
+.impact-section > .container,
+.products > .container,
+.why > .container,
+.video-section > .container,
+.contact > .container,
+footer > .container{
+
+    position:relative;
+    z-index:1;
+
+}
+
+.impact-section::before,
+.why::before,
+.contact::before{
+
+    z-index:1;
+    width:clamp(230px, 29vw, 410px);
+    aspect-ratio:1451 / 1084;
+    background-image:url("Vaina de Guanacaste en forma de oreja.png");
+    opacity:.52;
+    filter:drop-shadow(0 20px 28px rgba(50,25,10,.3));
+    animation:guanacaste-drift 9s ease-in-out infinite;
+
+}
+
+.impact-section::before{
+
+    top:5%;
+    right:-3%;
+    left:auto;
+    opacity:.62;
+
+}
+
+.why::before{
+
+    top:12%;
+    left:-3%;
+    opacity:.48;
+
+}
+
+.contact::before{
+
+    right:-3%;
+    bottom:5%;
+    left:auto;
+    opacity:.48;
+
+}
+
+.about::after,
+.products::after,
+.video-section::after,
+footer::after{
+
+    z-index:0;
+    width:clamp(210px, 27vw, 370px);
+    aspect-ratio:3 / 2;
+    background-image:url("Semilla tostada brillante en primer plano.png");
+    opacity:.5;
+    filter:drop-shadow(0 18px 26px rgba(50,25,10,.28));
+    animation:guanacaste-drift 11s ease-in-out infinite reverse;
+
+}
+
+.about::after{
+
+    right:-3%;
+    bottom:8%;
+    opacity:.48;
+
+}
+
+.products::after{
+
+    top:4%;
+    right:-3%;
+    opacity:.54;
+
+}
+
+.video-section::after{
+
+    bottom:7%;
+    left:-3%;
+    opacity:.52;
+
+}
+
+footer::after{
+
+    right:-3%;
+    bottom:5%;
+    opacity:.22;
+
+}
+
+.hero::before,
+.hero::after,
+.about::before,
+.impact-section::after,
+.products::before,
+.why::after,
+.video-section::before,
+.contact::after,
+footer::before{
+
+    display:none;
+
+}
+
+@keyframes guanacaste-drift{
+
+    0%, 100%{ transform:translate3d(0, 0, 0) rotate(-8deg); }
+    50%{ transform:translate3d(0, -12px, 0) rotate(-3deg); }
+
+}
+
 .section-title{
 
     text-align:center;
@@ -2369,6 +2530,58 @@ transform:scale(.9);
 }
 
 @media (max-width: 600px){
+
+    .impact-section::before,
+    .why::before,
+    .contact::before{
+
+        width:clamp(165px, 43vw, 220px);
+        opacity:.38;
+
+    }
+
+    .why::before{
+
+        left:-8%;
+
+    }
+
+    .impact-section::before,
+    .contact::before{
+
+        right:-8%;
+
+    }
+
+    .about::after,
+    .products::after,
+    .video-section::after,
+    footer::after{
+
+        width:clamp(155px, 40vw, 205px);
+        opacity:.38;
+
+    }
+
+    footer::after{
+
+        opacity:.22;
+
+    }
+
+    .about::after,
+    .products::after,
+    footer::after{
+
+        right:-8%;
+
+    }
+
+    .video-section::after{
+
+        left:-8%;
+
+    }
 
     section{
 
